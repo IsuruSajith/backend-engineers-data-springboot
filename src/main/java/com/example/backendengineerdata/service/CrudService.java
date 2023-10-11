@@ -10,7 +10,7 @@ public interface CrudService<T,ID> {
 
     void update(T entity) throws Exception;
 
-    void deleteById(ID pk)throws Exception;
+    boolean deleteById(ID pk)throws Exception;
 
     Optional<T> findById(ID pk) throws Exception;
     List<T> findAll() throws Exception;

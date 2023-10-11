@@ -42,8 +42,14 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public void deleteById(String pk) throws Exception {
+    public boolean deleteById(String pk) throws Exception {
+        try {
+            studentRepo.deleteById(pk);
+            return true;
 
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

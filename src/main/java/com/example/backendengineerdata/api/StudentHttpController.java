@@ -16,6 +16,7 @@ import java.util.Optional;
 @CrossOrigin
 public class StudentHttpController {
     private final StudentService studentService;
+
     public StudentHttpController(StudentService studentService) {
         this.studentService = studentService;
     }
@@ -38,11 +39,23 @@ public class StudentHttpController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StandardResponse> updateStudent(@PathVariable String id,
-                                                          @RequestBody StudentDTO studentDTO) throws Exception {
+    public ResponseEntity<StandardResponse> updateStudent(@PathVariable String id, @RequestBody StudentDTO studentDTO) throws Exception {
         studentService.update(studentDTO);
-        return new ResponseEntity<>(new StandardResponse(
-                200, "update successful", studentDTO),
-                HttpStatus.CREATED);
+        return new ResponseEntity<>(new StandardResponse(200, "update successful", studentDTO), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<StandardResponse> deleteById(@PathVariable String id) throws Exception {
+
+        try {
+            boolean deleted = studentService.deleteById(id);
+            if (deleted) {
+                return new ResponseEntity<>(new StandardResponse(200, "student data deleted successfully" + id, id), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new StandardResponse(404, "student not found" + id, id), HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new StandardResponse(500, "error deleting student" + id, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
