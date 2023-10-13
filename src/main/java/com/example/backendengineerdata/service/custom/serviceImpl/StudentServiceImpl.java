@@ -36,8 +36,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void update(StudentDTO entity) throws Exception {
-
+    public void update(StudentDTO studentDTO) throws Exception {
+        studentRepo.save(mapper.map(studentDTO, Student.class));
     }
 
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,5 +35,14 @@ public class StudentHttpController {
     @GetMapping("/{id}")
     public ResponseEntity<StandardResponse> getStudentById(@PathVariable String id) throws Exception {
         return new ResponseEntity<>(new StandardResponse(200, "found the student", studentService.findById(id)), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<StandardResponse> updateStudent(@PathVariable String id,
+                                                          @RequestBody StudentDTO studentDTO) throws Exception {
+        studentService.update(studentDTO);
+        return new ResponseEntity<>(new StandardResponse(
+                200, "update successful", studentDTO),
+                HttpStatus.CREATED);
     }
 }
