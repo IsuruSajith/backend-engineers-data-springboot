@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 public class StudentDTO implements Serializable {
-    private String student_index;
+    private String studentIndex;
     private String name;
     private String profession;
     private Gender gender;

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Student {
     @Id
     @Column(name = "student_index", nullable = false, length = 255)
-    private String student_index;
+    private String studentIndex;
     @Column(nullable = false, length = 100)
     private String name;
     @Column(nullable = false, length = 100)

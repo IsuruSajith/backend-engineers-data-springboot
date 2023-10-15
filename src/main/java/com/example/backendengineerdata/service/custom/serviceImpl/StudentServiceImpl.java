@@ -1,9 +1,12 @@
 package com.example.backendengineerdata.service.custom.serviceImpl;
 
+import com.example.backendengineerdata.dto.StudentDTO;
 import com.example.backendengineerdata.entity.Student;
 import com.example.backendengineerdata.repository.StudentRepo;
 import com.example.backendengineerdata.service.custom.StudentService;
+import com.example.backendengineerdata.util.StudentMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,6 +18,9 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepo studentRepo;
     private final ModelMapper mapper;
+
+    @Autowired
+    StudentMapper studentMapper;
 
     public StudentServiceImpl(StudentRepo studentRepo, ModelMapper mapper) {
         this.studentRepo = studentRepo;
@@ -50,7 +56,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List findAll() throws Exception {
-        return null;
+        List<Student> all = studentRepo.findAll();
+        List<StudentDTO> studentDTOS = studentMapper.entityListToDtoList(all);
+        return studentDTOS;
     }
 
     @Override
