@@ -1,22 +1,27 @@
 package com.example.backendengineerdata.entity;
 
 import com.example.backendengineerdata.util.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "student")
 public class Student {
     @Id
-    String index;
+    private String index;
     @Column(nullable = false, length = 100)
-    String name;
+    private String name;
     @Column(nullable = false, length = 100)
-    String profession;
+    private String profession;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    Gender gender;
+    private Gender gender;
 
 }
