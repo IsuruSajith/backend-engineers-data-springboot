@@ -17,9 +17,9 @@ public class StudentHttpController {
 
     @PostMapping(consumes = "application/json")
     public String saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
-        studentService.save(studentDTO);
+        String message = (String) studentService.save(studentDTO);
 
-        return null;
+        return message;
 
     }
 }
