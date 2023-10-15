@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Table(name = "student")
 public class Student {
     @Id
+    @Column(name = "student_index", nullable = false, length = 255)
     private String index;
     @Column(nullable = false, length = 100)
     private String name;
