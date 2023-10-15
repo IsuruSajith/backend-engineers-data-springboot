@@ -5,11 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 @Data
@@ -17,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 public class StudentDTO implements Serializable {
-    private String index;
+    private String student_index;
     private String name;
     private String profession;
     private Gender gender;
