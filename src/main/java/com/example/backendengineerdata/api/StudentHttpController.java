@@ -25,7 +25,7 @@ public class StudentHttpController {
 
     @GetMapping
     public List<StudentDTO> getAll() throws Exception {
-        List all = studentService.findAll();
+        List<StudentDTO> all = studentService.findAll();
         return all;
     }
 }

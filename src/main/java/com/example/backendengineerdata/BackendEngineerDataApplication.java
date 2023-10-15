@@ -9,7 +9,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan("com.example.backendengineerdata.util")
 public class BackendEngineerDataApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendEngineerDataApplication.class, args);
