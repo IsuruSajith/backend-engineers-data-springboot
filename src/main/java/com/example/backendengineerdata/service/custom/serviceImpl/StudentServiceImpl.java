@@ -2,6 +2,7 @@ package com.example.backendengineerdata.service.custom.serviceImpl;
 
 import com.example.backendengineerdata.dto.StudentDTO;
 import com.example.backendengineerdata.entity.Student;
+import com.example.backendengineerdata.exception.NotFoundException;
 import com.example.backendengineerdata.repository.StudentRepo;
 import com.example.backendengineerdata.service.custom.StudentService;
 import org.modelmapper.ModelMapper;
@@ -40,7 +41,6 @@ public class StudentServiceImpl implements StudentService {
         studentRepo.save(mapper.map(studentDTO, Student.class));
     }
 
-
     @Override
     public boolean deleteById(String pk) throws Exception {
         try {
@@ -51,13 +51,18 @@ public class StudentServiceImpl implements StudentService {
             return false;
         }
     }
-
     @Override
     public Optional<StudentDTO> findById(String pk) throws Exception {
-        Optional<Student> student = studentRepo.findById(pk);
-        return Optional.of(mapper.map(student, StudentDTO.class));
-    }
 
+        Optional<Student> student = studentRepo.findById(pk);
+        System.out.println("+++++++++++========================++++++++++++");
+        System.out.println(student);
+        if (Optional.empty().isPresent()) {
+            return Optional.of(mapper.map(student, StudentDTO.class));
+        } else {
+            throw new NotFoundException("no student fount for this ");
+        }
+    }
     @Override
     public List<StudentDTO> findAll() throws Exception {
         List<Student> all = studentRepo.findAll();
@@ -65,12 +70,9 @@ public class StudentServiceImpl implements StudentService {
         return all.stream().map(student -> mapper.map(student, StudentDTO.class))
                 .collect(Collectors.toList());
     }
-
     @Override
     public boolean existsById(String pk) throws Exception {
         return false;
     }
-
-
 
 }
