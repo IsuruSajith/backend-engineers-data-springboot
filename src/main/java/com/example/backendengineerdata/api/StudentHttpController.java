@@ -14,34 +14,25 @@ import java.util.Optional;
 @RequestMapping("api/v1/students")
 @CrossOrigin
 public class StudentHttpController {
-
-   private final StudentService studentService;
-
+    private final StudentService studentService;
     public StudentHttpController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<StandardResponse> saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
-        String message = (String) studentService.save(studentDTO);
-        return new ResponseEntity<StandardResponse>(
-                new StandardResponse(201,"saved successful",message), HttpStatus.CREATED
-        );
+        String message = studentService.save(studentDTO);
+        return new ResponseEntity<StandardResponse>(new StandardResponse(201, "saved successful", message), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<StandardResponse> getAll() throws Exception {
         List<StudentDTO> all = studentService.findAll();
-        return new ResponseEntity<StandardResponse>(
-                new StandardResponse(200,"request success",all),
-                HttpStatus.OK
-        );
+        return new ResponseEntity<StandardResponse>(new StandardResponse(200, "request success", all), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<StandardResponse> getStudentById(@PathVariable String id) throws Exception {
-        return new ResponseEntity<>(new StandardResponse(
-                200, "found the student", studentService.findById(id)),
-                HttpStatus.OK);
+        return new ResponseEntity<>(new StandardResponse(200, "found the student", studentService.findById(id)), HttpStatus.OK);
     }
 }

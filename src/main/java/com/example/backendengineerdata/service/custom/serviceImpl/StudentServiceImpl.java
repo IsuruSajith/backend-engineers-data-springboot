@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public long count() throws Exception {
-        return 0;
+        return studentRepo.count();
     }
 
     @Override
