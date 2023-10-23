@@ -1,6 +1,7 @@
 package com.example.backendengineerdata.api;
 
 import com.example.backendengineerdata.dto.StudentDTO;
+import com.example.backendengineerdata.dto.paginated.PaginatedStudentDTO;
 import com.example.backendengineerdata.service.custom.StudentService;
 import com.example.backendengineerdata.util.StandardResponse;
 import org.springframework.http.HttpStatus;
@@ -67,7 +68,8 @@ public class StudentHttpController {
             @RequestParam(value = "page") int page,
             @RequestParam(value = "size") int size
             ) {
-
-        return null;
+        PaginatedStudentDTO paginatedStudentDTO = studentService.getAllStudentAsPages();
+        return new ResponseEntity(new StandardResponse(200,"success",paginatedStudentDTO),
+                HttpStatus.OK);
     }
 }
