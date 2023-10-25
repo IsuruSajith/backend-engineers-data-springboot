@@ -24,7 +24,6 @@ public class StudentHttpController {
     @PostMapping(consumes = "application/json")
     public ResponseEntity<StandardResponse> saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
         String message = (String) studentService.save(studentDTO);
-
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(201,"saved successful",message), HttpStatus.CREATED
         );
@@ -41,9 +40,8 @@ public class StudentHttpController {
 
     @GetMapping("/{id}")
     public ResponseEntity<StandardResponse> getStudentById(@PathVariable String id) throws Exception {
-        studentService.findById(id);
-        return new StandardResponse(
-
-        );
+        return new ResponseEntity<>(new StandardResponse(
+                200, "found the student", studentService.findById(id)),
+                HttpStatus.OK);
     }
 }
