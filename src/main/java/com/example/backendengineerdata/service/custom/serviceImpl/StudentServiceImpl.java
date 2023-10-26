@@ -1,6 +1,7 @@
 package com.example.backendengineerdata.service.custom.serviceImpl;
 
 import com.example.backendengineerdata.dto.StudentDTO;
+import com.example.backendengineerdata.dto.paginated.PaginatedStudentDTO;
 import com.example.backendengineerdata.entity.Student;
 import com.example.backendengineerdata.exception.NotFoundException;
 import com.example.backendengineerdata.repository.StudentRepo;
@@ -75,4 +76,9 @@ public class StudentServiceImpl implements StudentService {
         return false;
     }
 
+    @Override
+    public PaginatedStudentDTO getAllStudentAsPages() {
+
+        return null;
+    }
 }
