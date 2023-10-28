@@ -58,4 +58,16 @@ public class StudentHttpController {
             return new ResponseEntity<>(new StandardResponse(500, "error deleting student" + id, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(
+            path = "/get-all-student-page-by-page",
+            params = {"page", "size"}
+    )
+    public ResponseEntity getAllStudentAsPages(
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size
+            ) {
+
+        return null;
+    }
 }
