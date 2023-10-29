@@ -49,8 +49,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Optional<StudentDTO> findById(String pk) throws Exception {
         Optional<Student> student = studentRepo.findById(pk);
-        mapper.map(student, StudentDTO.class);
-        return Optional.empty();
+        return Optional.of(mapper.map(student, StudentDTO.class));
     }
 
     @Override
@@ -66,46 +65,6 @@ public class StudentServiceImpl implements StudentService {
         return false;
     }
 
-    /*@Override
-    public long count() throws Exception {
-        return 0;
-    }
-
-    @Override
-    public String save(Object entity) throws Exception {
-        Student student = mapper.map(entity, Student.class);
-        studentRepo.save(student);
-        return "saved successfully";
-    }
-
-    @Override
-    public void update(Object entity) throws Exception {
-
-    }
-
-    @Override
-    public void deleteById(Object pk) throws Exception {
-
-    }
-
-    @Override
-    public Optional findById(Object pk) throws Exception {
-        studentRepo.findById((String) pk);
-        return Optional.empty();
-    }
-
-    @Override
-    public List<StudentDTO> findAll() throws Exception {
-        List<Student> all = studentRepo.findAll();
-        System.out.println(all);
-        return all.stream().map(student -> mapper.map(student, StudentDTO.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean existsById(Object pk) throws Exception {
-        return false;
-    }*/
 
 
 }

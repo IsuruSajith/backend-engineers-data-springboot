@@ -40,8 +40,10 @@ public class StudentHttpController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getStudentById(@PathVariable String id) throws Exception {
+    public ResponseEntity<StandardResponse> getStudentById(@PathVariable String id) throws Exception {
         studentService.findById(id);
-        return null;
+        return new StandardResponse(
+
+        );
     }
 }
