@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface CrudService<T,ID> {
     long count() throws Exception;
 
-    T save(T entity) throws Exception;
+    String save(T entity) throws Exception;
 
     void update(T entity) throws Exception;
 
