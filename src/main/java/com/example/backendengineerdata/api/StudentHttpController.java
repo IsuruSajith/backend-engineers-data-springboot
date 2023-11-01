@@ -23,10 +23,10 @@ public class StudentHttpController {
     @PostMapping(consumes = "application/json")
     public ResponseEntity<StandardResponse> saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
         String message = (String) studentService.save(studentDTO);
-        ResponseEntity responseEntity = new ResponseEntity<StandardResponse>(
+
+        return new ResponseEntity<StandardResponse>(
                 new StandardResponse(201,"saved successful",message), HttpStatus.CREATED
         );
-        return responseEntity;
     }
 
     @GetMapping
