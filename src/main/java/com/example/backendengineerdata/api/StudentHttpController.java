@@ -2,6 +2,9 @@ package com.example.backendengineerdata.api;
 
 import com.example.backendengineerdata.dto.StudentDTO;
 import com.example.backendengineerdata.service.custom.StudentService;
+import com.example.backendengineerdata.util.StandardResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +21,12 @@ public class StudentHttpController {
     }
 
     @PostMapping(consumes = "application/json")
-    public String saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
+    public ResponseEntity<StandardResponse> saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
         String message = (String) studentService.save(studentDTO);
-        return message;
+        ResponseEntity responseEntity = new ResponseEntity<StandardResponse>(
+                new StandardResponse(201,"saved successful",message), HttpStatus.CREATED
+        );
+        return responseEntity;
     }
 
     @GetMapping
