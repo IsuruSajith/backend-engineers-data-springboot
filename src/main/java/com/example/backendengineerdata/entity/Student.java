@@ -20,7 +20,6 @@ public class Student {
     private String name;
     @Column(nullable = false, length = 100)
     private String profession;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;

@@ -18,7 +18,6 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepo studentRepo;
     private final ModelMapper mapper;
 
-
     public StudentServiceImpl(StudentRepo studentRepo, ModelMapper mapper) {
         this.studentRepo = studentRepo;
         this.mapper = mapper;

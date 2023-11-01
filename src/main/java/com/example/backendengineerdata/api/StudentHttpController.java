@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/students")
@@ -30,8 +31,17 @@ public class StudentHttpController {
     }
 
     @GetMapping
-    public List<StudentDTO> getAll() throws Exception {
+    public ResponseEntity<StandardResponse> getAll() throws Exception {
         List<StudentDTO> all = studentService.findAll();
-        return all;
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"request success",all),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getStudentById(@PathVariable String id) throws Exception {
+        studentService.findById(id);
+        return null;
     }
 }
