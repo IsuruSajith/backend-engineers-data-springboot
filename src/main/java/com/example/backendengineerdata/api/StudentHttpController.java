@@ -68,7 +68,7 @@ public class StudentHttpController {
             @RequestParam(value = "page") int page,
             @RequestParam(value = "size") int size
             ) {
-        PaginatedStudentDTO paginatedStudentDTO = studentService.getAllStudentAsPages();
+        PaginatedStudentDTO paginatedStudentDTO = studentService.getAllStudentAsPages(page,size);
         return new ResponseEntity(new StandardResponse(200,"success",paginatedStudentDTO),
                 HttpStatus.OK);
     }

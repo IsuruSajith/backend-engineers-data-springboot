@@ -7,6 +7,8 @@ import com.example.backendengineerdata.exception.NotFoundException;
 import com.example.backendengineerdata.repository.StudentRepo;
 import com.example.backendengineerdata.service.custom.StudentService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -77,8 +79,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public PaginatedStudentDTO getAllStudentAsPages() {
+    public PaginatedStudentDTO getAllStudentAsPages(int page, int size) {
 
+        Page<Student> students = studentRepo.findAll(PageRequest.of(page, size));
         return null;
     }
 }
