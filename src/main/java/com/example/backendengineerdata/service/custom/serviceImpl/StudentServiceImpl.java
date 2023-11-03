@@ -84,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
     public PaginatedStudentDTO getAllStudentAsPages(int page, int size) {
         Page<Student> students = studentRepo.findAll(PageRequest.of(page, size));
         List<StudentDTO> studentDTOS = students.getContent().stream().map(student -> mapper.map(student, StudentDTO.class)).collect(Collectors.toList());
-        PaginatedStudentDTO paginatedStudentDTO = new PaginatedStudentDTO(studentDTOS, 2);
+        PaginatedStudentDTO paginatedStudentDTO = new PaginatedStudentDTO(studentDTOS, studentRepo.count());
         return paginatedStudentDTO;
     }
 }
