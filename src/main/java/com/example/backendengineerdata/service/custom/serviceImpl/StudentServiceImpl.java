@@ -54,6 +54,7 @@ public class StudentServiceImpl implements StudentService {
             return false;
         }
     }
+
     @Override
     public Optional<StudentDTO> findById(String pk) throws Exception {
 
@@ -66,13 +67,14 @@ public class StudentServiceImpl implements StudentService {
             throw new NotFoundException("no student fount for this ");
         }
     }
+
     @Override
     public List<StudentDTO> findAll() throws Exception {
         List<Student> all = studentRepo.findAll();
         System.out.println(all);
-        return all.stream().map(student -> mapper.map(student, StudentDTO.class))
-                .collect(Collectors.toList());
+        return all.stream().map(student -> mapper.map(student, StudentDTO.class)).collect(Collectors.toList());
     }
+
     @Override
     public boolean existsById(String pk) throws Exception {
         return false;
@@ -80,8 +82,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public PaginatedStudentDTO getAllStudentAsPages(int page, int size) {
-
         Page<Student> students = studentRepo.findAll(PageRequest.of(page, size));
-        return null;
+        List<StudentDTO> studentDTOS = students.getContent().stream().map(student -> mapper.map(student, StudentDTO.class)).collect(Collectors.toList());
+        PaginatedStudentDTO paginatedStudentDTO = new PaginatedStudentDTO(studentDTOS, 2);
+        return paginatedStudentDTO;
     }
 }
