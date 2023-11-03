@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Max;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +67,7 @@ public class StudentHttpController {
     )
     public ResponseEntity getAllStudentAsPages(
             @RequestParam(value = "page") int page,
-            @RequestParam(value = "size") int size
+            @RequestParam(value = "size") @Max(30) int size
             ) {
         PaginatedStudentDTO paginatedStudentDTO = studentService.getAllStudentAsPages(page,size);
         return new ResponseEntity(new StandardResponse(200,"success",paginatedStudentDTO),
