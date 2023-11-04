@@ -23,5 +23,4 @@ public class Student {
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
-
 }

@@ -25,6 +25,8 @@ public class StudentHttpController {
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<StandardResponse> saveStudent(@RequestBody StudentDTO studentDTO) throws Exception {
+        System.out.println("======================+++++++++++++++++===================");
+        System.out.println(studentDTO);
         String message = studentService.save(studentDTO);
         return new ResponseEntity<StandardResponse>(new StandardResponse(201, "saved successful", message), HttpStatus.CREATED);
     }
