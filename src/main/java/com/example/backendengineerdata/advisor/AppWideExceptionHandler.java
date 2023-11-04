@@ -16,3 +16,5 @@ public class AppWideExceptionHandler {
                 HttpStatus.NOT_FOUND);
     }
 }
+
+
