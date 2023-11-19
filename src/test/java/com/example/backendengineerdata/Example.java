@@ -3,18 +3,21 @@ package com.example.backendengineerdata;
 import java.util.Scanner;
 
 class Example {
-    public static void findAbs() {
+    public static int getAbs() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Input a number: ");
+        System.out.print("Input a num: ");
         int num = input.nextInt();
 
-        System.out.println(num < 0 ? -num : num);
+
+        return 1;
     }
 
-    public static void main(String args[]) {
-        findAbs();
+    public static void main(String args[]){
+        int abs = getAbs();
+        System.out.println("Absolute value: " + abs);
     }
+
 
 
 }

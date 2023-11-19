@@ -25,6 +25,6 @@ public class Student {
     private Gender gender;
 
     @ManyToOne
-    @JoinColumn(name="company_id", nullable=false)
+    @JoinColumn(name="company_id")
     private Company company;
 }
