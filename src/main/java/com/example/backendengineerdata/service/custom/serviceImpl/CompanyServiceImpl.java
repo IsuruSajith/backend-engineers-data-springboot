@@ -1,6 +1,7 @@
 package com.example.backendengineerdata.service.custom.serviceImpl;
 
 import com.example.backendengineerdata.entity.Company;
+import com.example.backendengineerdata.repository.CompanyRepo;
 import com.example.backendengineerdata.repository.StudentRepo;
 import com.example.backendengineerdata.service.custom.CompanyService;
 import org.modelmapper.ModelMapper;
@@ -14,8 +15,14 @@ import java.util.Optional;
 @Transactional
 public class CompanyServiceImpl implements CompanyService {
 
-    private StudentRepo studentRepo;
-    private ModelMapper mapper;
+    private final CompanyRepo companyRepo;
+    private final ModelMapper mapper;
+
+
+    public CompanyServiceImpl(CompanyRepo companyRepo, ModelMapper mapper) {
+        this.companyRepo = companyRepo;
+        this.mapper = mapper;
+    }
 
 
     @Override
@@ -25,7 +32,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public String save(Company entity) throws Exception {
-        return null;
+        Company company = mapper.map(entity, Company.class);
+        companyRepo.save(company);
+        return "company saved successfully";
     }
 
     @Override
@@ -52,6 +61,5 @@ public class CompanyServiceImpl implements CompanyService {
     public boolean existsById(Integer pk) throws Exception {
         return false;
     }
-
 
 }
