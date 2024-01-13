@@ -21,14 +21,14 @@ public class CompanyHttpController {
     }
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<StandardResponse> saveCompany(@RequestBody CompanyDTO companyDTO) throws Exception{
+    public ResponseEntity<StandardResponse> saveCompany(@RequestBody CompanyDTO companyDTO) throws Exception {
         String message = companyService.save(companyDTO);
-        return new ResponseEntity<>(new StandardResponse(201,message,message), HttpStatus.CREATED);
+        return new ResponseEntity<>(new StandardResponse(201, message, message), HttpStatus.CREATED);
     }
 
-
-    public ResponseEntity<StandardResponse> getAllCompanies() throws Exception{
+    @GetMapping
+    public ResponseEntity<StandardResponse> getAllCompanies() throws Exception {
         List<CompanyDTO> all = companyService.findAll();
-        return new ResponseEntity<>(new StandardResponse(200,"request success",all),HttpStatus.OK);
+        return new ResponseEntity<>(new StandardResponse(200, "request success", all), HttpStatus.OK);
     }
 }
